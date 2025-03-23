@@ -15,8 +15,6 @@ builder.Services.AddControllers();
 builder.Services
     .AddOptions<JwtBearer>()
     .BindConfiguration(nameof(JwtBearer));
-
-
 builder.Services.AddAuthentication(options =>
     {
         options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -80,13 +78,13 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

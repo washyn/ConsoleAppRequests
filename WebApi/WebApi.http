@@ -1,3 +1,4 @@
+@host = http://localhost:5265
 POST {{host}}/api/abp/account/login
 
 > {%

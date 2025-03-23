@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using Volo.Abp.Security.Claims;
 
 namespace WebApi.Controllers
 {
@@ -34,8 +33,8 @@ namespace WebApi.Controllers
         private string CreateAccessToken()
         {
             var claims = new List<Claim>();
-            claims.Add(new Claim(AbpClaimTypes.Name, "User"));
-            claims.Add(new Claim(AbpClaimTypes.Email, "user@example.com"));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Name, "User"));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Email, "user@example.com"));
             
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_options.SecurityKey));
             var siginCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
