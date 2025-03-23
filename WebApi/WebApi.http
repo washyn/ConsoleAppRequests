@@ -1,0 +1,21 @@
+POST {{host}}/api/abp/account/login
+
+> {%
+    client.global.set("bearer_token", response.body.token);
+%}
+###
+GET http://localhost:5265/api/weatherforecast
+###
+GET {{host}}/api/weatherforecast
+###
+GET {{host}}/api/weatherforecast/secured
+Authorization: Bearer {{bearer_token}}
+
+###
+GET {{host}}/api/weatherforecast
+
+> {%
+    client.test("Hello, World!", function(){
+        client.assert(response.status >= 200 && response.status <= 299, "Response status is not 200");
+    });
+%}
