@@ -1,0 +1,1 @@
+﻿client.global.set("bearer_token", response.body.token);
