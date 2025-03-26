@@ -4,9 +4,15 @@ POST {{host}}/api/abp/account/login
 
 > ./save-token.js
 ###
-GET http://localhost:5265/api/weatherforecast
+GET {{host}}/api/weatherforecast
 ###
 GET {{host}}/api/weatherforecast
+
+> {% 
+    client.test("Test status code", function(){
+        client.assert(response.status >= 200 && response.status <= 299, "Response status is not in range 200");
+    });
+%}
 ###
 GET {{host}}/api/weatherforecast/secured
 Authorization: Bearer {{bearer_token}}
